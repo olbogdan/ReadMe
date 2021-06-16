@@ -5,10 +5,13 @@
 //  Created by bogdanov on 16.06.21.
 //
 
+import class PhotosUI.PHPickerViewController
 import SwiftUI
 
 struct DetailView: View {
     let book: Book
+    @Binding var image: UIImage?
+    @State var showImagePicker = false
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -17,11 +20,14 @@ struct DetailView: View {
             Spacer()
         }
         .padding()
+        .sheet(isPresented: $showImagePicker) {
+            PHPickerViewController.View(image: $image)
+        }
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(book: .init())
+        DetailView(book: .init(), image: .constant(nil))
     }
 }
