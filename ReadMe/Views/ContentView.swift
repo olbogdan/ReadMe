@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var library = Library()
+
     var body: some View {
         NavigationView {
-            List(Library().sortedBooks, id: \.self) { book in
-                BookRow(book: book)
+            List(library.sortedBooks, id: \.self) { book in
+                BookRow(book: book, image: $library.uiImages[book])
             }.navigationBarTitle("My Library")
         }
     }
@@ -19,10 +21,11 @@ struct ContentView: View {
 
 struct BookRow: View {
     let book: Book
+    @Binding var image: UIImage?
 
     var body: some View {
         NavigationLink(
-            destination: DetailView(book: book),
+            destination: DetailView(book: book, image: $image),
             label: {
                 HStack {
                     Book.Image(title: book.title, size: 80)
