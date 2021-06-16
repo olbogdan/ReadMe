@@ -40,17 +40,6 @@ struct TitleAndAuthorStack: View {
     }
 }
 
-struct Book_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            TitleAndAuthorStack(book: .init(), titleFont: .title, authorFont: .title2)
-            Book.Image(title: Book().title)
-            Book.Image(title: "")
-            Book.Image(title: "🎪")
-        }
-    }
-}
-
 extension Image {
     init?(title: String) {
         guard let character = title.first,
@@ -60,5 +49,22 @@ extension Image {
             return nil
         }
         self.init(systemName: symbolName)
+    }
+}
+
+struct Book_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            TitleAndAuthorStack(book: .init(), titleFont: .title, authorFont: .title2)
+            Book.Image(title: Book().title)
+            Book.Image(title: "")
+            Book.Image(title: "🎪")
+        }.previewedInAllColorSchemes
+    }
+}
+
+extension View {
+    var previewedInAllColorSchemes: some View {
+        ForEach(ColorScheme.allCases, id: \.self, content: preferredColorScheme)
     }
 }

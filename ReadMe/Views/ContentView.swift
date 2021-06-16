@@ -25,19 +25,20 @@ struct BookRow: View {
 
     var body: some View {
         NavigationLink(
-            destination: DetailView(book: book, image: $image),
-            label: {
+            destination: DetailView(book: book, image: $image)) {
                 HStack {
                     Book.Image(title: book.title, size: 80)
                     TitleAndAuthorStack(book: book, titleFont: .title2, authorFont: .title3)
                         .lineLimit(1)
                 }
-            })
+                .padding(.vertical, 8)
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .previewedInAllColorSchemes
     }
 }
