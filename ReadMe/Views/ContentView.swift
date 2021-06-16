@@ -26,14 +26,9 @@ struct BookRow: View {
             label: {
                 HStack {
                     Book.Image(title: book.title)
-                    VStack(alignment: .leading) {
-                        Text(book.title)
-                            .font(.title2)
-                        Text(book.author)
-                            .font(.title3)
-                            .foregroundColor(.secondary)
-                    }
-                }.lineLimit(1)
+                    TitleAndAuthorStack(book: book, titleFont: .title2, authorFont: .title3)
+                        .lineLimit(1)
+                }
             })
     }
 }
