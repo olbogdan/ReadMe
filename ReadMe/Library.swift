@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import class UIKit.UIImage
 
 final class Library {
     var sortedBooks: [Book] {booksCache}
@@ -21,6 +22,7 @@ final class Library {
         .init(title: "Eugene Onegin", author: "Aleksandr Pushkin"),
         .init(title: "Lolita", author: "Vladimir Nabokov"),
         .init(title: "Doctor Zhivago", author: "Boris Pasternak")
-
     ]
+    
+    var uiImages: [Book: UIImage] = [:]
 }
