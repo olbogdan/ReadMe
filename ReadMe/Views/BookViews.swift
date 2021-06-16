@@ -10,13 +10,14 @@ import SwiftUI
 extension Book {
     struct Image: View {
         let title: String
+        var size: CGFloat?
 
         var body: some View {
             let symbol = SwiftUI.Image(title: title) ?? .init(systemName: "book")
             symbol
                 .resizable()
                 .scaledToFit()
-                .frame(width: 80, height: 80)
+                .frame(width: size, height: size)
                 .font(.title.weight(.light))
                 .foregroundColor(.secondary)
         }
