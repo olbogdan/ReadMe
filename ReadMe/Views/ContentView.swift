@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         NavigationView {
-            List(Library().sortedBooks, id: \.title) { book in
+            List(Library().sortedBooks, id: \.self) { book in
                 BookRow(book: book)
             }.navigationBarTitle("My Library")
         }
