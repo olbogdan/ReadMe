@@ -5,12 +5,12 @@
 //  Created by bogdanov on 16.06.21.
 //
 
-import Foundation
+import Combine
 import class UIKit.UIImage
 
-class Library : ObservableObject {
-    var sortedBooks: [Book] {booksCache}
-    
+class Library: ObservableObject {
+    var sortedBooks: [Book] { booksCache }
+
     private var booksCache: [Book] = [
         .init(title: "War and Peace", author: "Leo Tolstoy"),
         .init(title: "Anna Karenina", author: "Leo Tolstoy"),
@@ -23,6 +23,6 @@ class Library : ObservableObject {
         .init(title: "Lolita", author: "Vladimir Nabokov"),
         .init(title: "Doctor Zhivago", author: "Boris Pasternak")
     ]
-    
+
     @Published var uiImages: [Book: UIImage] = [:]
 }
