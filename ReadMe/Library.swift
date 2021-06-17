@@ -8,7 +8,7 @@
 import Foundation
 import class UIKit.UIImage
 
-final class Library {
+class Library : ObservableObject {
     var sortedBooks: [Book] {booksCache}
     
     private var booksCache: [Book] = [
@@ -24,5 +24,5 @@ final class Library {
         .init(title: "Doctor Zhivago", author: "Boris Pasternak")
     ]
     
-    var uiImages: [Book: UIImage] = [:]
+    @Published var uiImages: [Book: UIImage] = [:]
 }

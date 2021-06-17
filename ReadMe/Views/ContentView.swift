@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var library = Library()
+    @ObservedObject var library = Library()
 
     var body: some View {
         NavigationView {
