@@ -62,6 +62,18 @@ struct TitleAndAuthorStack: View {
     }
 }
 
+struct BookmarkButton: View {
+    @ObservedObject var book: Book
+    var body: some View {
+        let bookmark = "bookmark"
+
+        Button { book.readMe.toggle() } label: {
+            Image(systemName: book.readMe ? "\(bookmark).fill" : bookmark)
+                .font(.system(size: 48, weight: .light))
+        }
+    }
+}
+
 extension View {
     var previewedInAllColorSchemes: some View {
         ForEach(ColorScheme.allCases, id: \.self, content: preferredColorScheme)
@@ -71,7 +83,11 @@ extension View {
 struct Book_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            TitleAndAuthorStack(book: .init(), titleFont: .title, authorFont: .title2)
+            HStack {
+                BookmarkButton(book: .init())
+                BookmarkButton(book: .init(readMe: false))
+                TitleAndAuthorStack(book: .init(), titleFont: .title, authorFont: .title2)
+            }
             Book.Image(uiImage: nil, title: Book().title, cornerRadius: 0)
             Book.Image(uiImage: nil, title: "", cornerRadius: 0)
             Book.Image(uiImage: nil, title: "🎪", cornerRadius: 0)
