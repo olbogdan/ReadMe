@@ -11,25 +11,54 @@ import SwiftUI
 struct DetailView: View {
     let book: Book
     @Binding var image: UIImage?
-    @State var showImagePicker = false
+    @State var showingImagePicker = false
+    @State var showingDeleteImageAlert = false
 
     var body: some View {
+        let updateButton = Button(action: {
+            showingImagePicker = true
+        }, label: {
+            Text("Update Image...")
+        })
+
+        let deleteButton = Button(action: {
+            showingDeleteImageAlert = true
+        }, label: {
+            Text("Delete image")
+                .foregroundColor(.red)
+        })
+
         VStack(alignment: .leading) {
             TitleAndAuthorStack(book: book, titleFont: .title, authorFont: .title2)
             VStack {
                 Book.Image(uiImage: image, title: book.title, cornerRadius: 16)
                     .scaledToFit()
-                Button(action: {
-                    showImagePicker = true
-                }, label: {
-                    Text("Update Image...")
-                })
+                if image != nil {
+                    HStack {
+                        Spacer()
+                        updateButton
+                        Spacer()
+                        deleteButton
+                        Spacer()
+                    }
+                } else {
+                    updateButton
+                }
             }
             Spacer()
         }
         .padding()
-        .sheet(isPresented: $showImagePicker) {
+        .sheet(isPresented: $showingImagePicker) {
             PHPickerViewController.View(image: $image)
+        }
+        .alert(isPresented: $showingDeleteImageAlert) {
+            .init(
+                title: .init("Delete image for \(book.title)?"),
+                primaryButton: .destructive(.init("Delete")) {
+                    image = nil
+                },
+                secondaryButton: .cancel()
+            )
         }
     }
 }
