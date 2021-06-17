@@ -30,6 +30,9 @@ struct BookRow: View {
                     Book.Image(uiImage: image, title: book.title, size: 80, cornerRadius: 12)
                     TitleAndAuthorStack(book: book, titleFont: .title2, authorFont: .title3)
                         .lineLimit(1)
+                    Spacer()
+                    BookmarkButton(book: book)
+                        .buttonStyle(BorderlessButtonStyle())
                 }
                 .padding(.vertical, 8)
         }
