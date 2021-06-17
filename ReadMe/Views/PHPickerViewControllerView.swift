@@ -1,5 +1,5 @@
 //
-//  DetailView.swift
+//  PHPickerViewController.swift
 //  ReadMe
 //
 //  Created by bogdanov on 17.06.21.
