@@ -8,12 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var library = Library()
+    @EnvironmentObject var library: Library
+    @State var addingNewBook = false
 
     var body: some View {
         NavigationView {
-            List(library.sortedBooks, id: \.id) { book in
-                BookRow(book: book, image: $library.uiImages[book])
+            List {
+                Button(action: {
+                    addingNewBook = true
+                }) {
+                        Spacer()
+                        VStack(spacing: 6) {
+                            Image(systemName: "book.circle")
+                                .font(.system(size: 60))
+                            Text("Add New Book")
+                                .font(.title2)
+                        }
+                        Spacer()
+                }
+                .buttonStyle(BorderlessButtonStyle())
+                .padding(.vertical, 8)
+                .sheet(isPresented: $addingNewBook, content: NewBookView.init)
+                ForEach(library.sortedBooks, id: \.id) { book in
+                    BookRow(book: book)
+                }
             }.navigationBarTitle("My Library")
         }
     }
@@ -21,13 +39,13 @@ struct ContentView: View {
 
 struct BookRow: View {
     @ObservedObject var book: Book
-    @Binding var image: UIImage?
+    @EnvironmentObject var library: Library
 
     var body: some View {
         NavigationLink(
-            destination: DetailView(book: book, image: $image)) {
+            destination: DetailView(book: book)) {
                 HStack {
-                    Book.Image(uiImage: image, title: book.title, size: 80, cornerRadius: 12)
+                    Book.Image(uiImage: library.uiImages[book], title: book.title, size: 80, cornerRadius: 12)
                     VStack(alignment: .leading) {
                         TitleAndAuthorStack(book: book, titleFont: .title2, authorFont: .title3)
                         if !book.microReview.isEmpty {
@@ -50,6 +68,7 @@ struct BookRow: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(Library())
             .previewedInAllColorSchemes
     }
 }

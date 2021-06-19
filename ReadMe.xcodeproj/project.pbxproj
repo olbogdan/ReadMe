@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		689383C5267E6692002B75C9 /* NewBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689383C4267E6692002B75C9 /* NewBookView.swift */; };
+		689383C7267E6A28002B75C9 /* ReviewAndImageStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689383C6267E6A28002B75C9 /* ReviewAndImageStack.swift */; };
 		68ADFE07267A364F00A091A5 /* ReadMeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68ADFE06267A364F00A091A5 /* ReadMeApp.swift */; };
 		68ADFE09267A364F00A091A5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68ADFE08267A364F00A091A5 /* ContentView.swift */; };
 		68ADFE0B267A365300A091A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68ADFE0A267A365300A091A5 /* Assets.xcassets */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		689383C4267E6692002B75C9 /* NewBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBookView.swift; sourceTree = "<group>"; };
+		689383C6267E6A28002B75C9 /* ReviewAndImageStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAndImageStack.swift; sourceTree = "<group>"; };
 		68ADFE03267A364F00A091A5 /* ReadMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68ADFE06267A364F00A091A5 /* ReadMeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadMeApp.swift; sourceTree = "<group>"; };
 		68ADFE08267A364F00A091A5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,13 +66,13 @@
 		68ADFE05267A364F00A091A5 /* ReadMe */ = {
 			isa = PBXGroup;
 			children = (
-				68ADFE17267A403200A091A5 /* Views */,
 				68ADFE06267A364F00A091A5 /* ReadMeApp.swift */,
+				68ADFE15267A3C5A00A091A5 /* Book.swift */,
+				68ADFE1A267A4AF800A091A5 /* Library.swift */,
+				68ADFE17267A403200A091A5 /* Views */,
 				68ADFE0A267A365300A091A5 /* Assets.xcassets */,
 				68ADFE0F267A365300A091A5 /* Info.plist */,
 				68ADFE0C267A365300A091A5 /* Preview Content */,
-				68ADFE15267A3C5A00A091A5 /* Book.swift */,
-				68ADFE1A267A4AF800A091A5 /* Library.swift */,
 			);
 			path = ReadMe;
 			sourceTree = "<group>";
@@ -88,6 +92,8 @@
 				68ADFE18267A405E00A091A5 /* BookViews.swift */,
 				68ADFE1C267A4E5B00A091A5 /* DetailView.swift */,
 				68ADFE20267BC0DE00A091A5 /* PHPickerViewControllerView.swift */,
+				689383C4267E6692002B75C9 /* NewBookView.swift */,
+				689383C6267E6A28002B75C9 /* ReviewAndImageStack.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -164,9 +170,11 @@
 				68ADFE09267A364F00A091A5 /* ContentView.swift in Sources */,
 				68ADFE1D267A4E5B00A091A5 /* DetailView.swift in Sources */,
 				68ADFE07267A364F00A091A5 /* ReadMeApp.swift in Sources */,
+				689383C5267E6692002B75C9 /* NewBookView.swift in Sources */,
 				68ADFE1B267A4AF800A091A5 /* Library.swift in Sources */,
 				68ADFE21267BC0DE00A091A5 /* PHPickerViewControllerView.swift in Sources */,
 				68ADFE16267A3C5A00A091A5 /* Book.swift in Sources */,
+				689383C7267E6A28002B75C9 /* ReviewAndImageStack.swift in Sources */,
 				68ADFE19267A405E00A091A5 /* BookViews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
