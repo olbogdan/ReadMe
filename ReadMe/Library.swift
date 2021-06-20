@@ -8,7 +8,7 @@
 import Combine
 import class UIKit.UIImage
 
-enum Section {
+enum Section: CaseIterable {
     case readMe
     case finished
 }
@@ -25,6 +25,11 @@ final class Library: ObservableObject {
     func addNewBook(_ book: Book, image: UIImage?) {
         booksCache.insert(book, at: 0)
         uiImages[book] = image
+        storeCancellable(for: book)
+    }
+
+    init() {
+        booksCache.forEach(storeCancellable)
     }
 
     @Published var uiImages: [Book: UIImage] = [:]
@@ -41,9 +46,21 @@ final class Library: ObservableObject {
         .init(title: "Lolita", author: "Vladimir Nabokov"),
         .init(title: "Doctor Zhivago", author: "Boris Pasternak")
     ]
+
+    /// Forwards individual book changes to be considered Library changes.
+    private var cancellable: Set<AnyCancellable> = []
 }
 
 // MARK: - private
+
+private extension Library {
+    func storeCancellable(for book: Book) {
+        book.$readMe.sink { [unowned self] _ in
+            objectWillChange.send()
+        }
+        .store(in: &cancellable)
+    }
+}
 
 private extension Section {
     init(readMe: Bool) {
