@@ -33,7 +33,18 @@ struct ContentView: View {
                     SectionView(section: $0)
                 }
             }
-            .toolbar(content: EditButton.init)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Menu("Sort") {
+                        Picker("Sort Style", selection: $library.sortStyle) {
+                            ForEach(SortStyle.allCases, id: \.self) { sortStyle in
+                                Text("\(sortStyle)".capitalized)
+                            }
+                        }
+                    }
+                }
+                ToolbarItem(content: EditButton.init)
+            }
             .navigationBarTitle("My Library")
         }
     }

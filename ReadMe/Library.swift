@@ -14,7 +14,16 @@ enum Section: CaseIterable {
     case finished
 }
 
+enum SortStyle: CaseIterable {
+    case title
+    case author
+    case manual
+}
+
 final class Library: ObservableObject {
+    @Published var sortStyle: SortStyle = .manual
+
+    /// The books are sorted by its `sortStyle`.
     var sortedBooks: [Book] {
         get {
             booksCache
