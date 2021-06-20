@@ -98,6 +98,9 @@ private struct SectionView: View {
                 .onDelete { indexSet in
                     library.deleteBooks(atOffsets: indexSet, section: section)
                 }
+                .onMove { indices, newOffset in
+                    library.moveBooks(oldOffsets: indices, newOffset: newOffset, section: section)
+                }
             }
         }
     }

@@ -61,6 +61,10 @@ final class Library: ObservableObject {
         }
     }
 
+    func moveBooks(oldOffsets: IndexSet, newOffset: Int, section: Section) {
+        manuallySortedBooks[section]?.move(fromOffsets: oldOffsets, toOffset: newOffset)
+    }
+
     init() {
         booksCache.forEach(storeCancellable)
     }
