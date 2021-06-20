@@ -32,7 +32,9 @@ struct ContentView: View {
                 ForEach(Section.allCases, id: \.self) {
                     SectionView(section: $0)
                 }
-            }.navigationBarTitle("My Library")
+            }
+            .toolbar(content: EditButton.init)
+            .navigationBarTitle("My Library")
         }
     }
 }
