@@ -26,7 +26,20 @@ final class Library: ObservableObject {
     /// The books are sorted by its `sortStyle`.
     var sortedBooks: [Book] {
         get {
-            booksCache
+            switch sortStyle {
+            case .title:
+                return booksCache.sorted {
+                    ["a ", "the "].reduce($0.title.lowercased()) { title, article in
+                        title.without(prefix: article) ?? title
+                    }
+                }
+            case .author:
+                return booksCache.sorted {
+                    PersonNameComponentsFormatter().personNameComponents(from: $0.author) ?? .init()
+                }
+            case .manual:
+                return booksCache
+            }
         }
         set {
             booksCache.removeAll { book in
@@ -64,7 +77,7 @@ final class Library: ObservableObject {
         }
 
         for change in booksCache.difference(from: booksBeforeDeletion) {
-            if case .remove(_, let deletedBook, _) = change {
+            if case let .remove(_, deletedBook, _) = change {
                 uiImages[deletedBook] = nil
             }
         }
@@ -97,7 +110,73 @@ final class Library: ObservableObject {
     private var cancellable: Set<AnyCancellable> = []
 }
 
+// MARK: - PersonNameComponents: Comparable
+
+extension PersonNameComponents: Comparable {
+    public static func < (components0: Self, components1: Self) -> Bool {
+        var fallback: Bool {
+            [\PersonNameComponents.givenName, \.middleName].contains {
+                Optional(
+                    optionals: (components0[keyPath: $0], components1[keyPath: $0])
+                )
+                .map { $0.lowercased().isLessThan($1.lowercased(), whenEqual: false) }
+                ?? false
+            }
+        }
+
+        switch (
+            components0.givenName?.lowercased(), components0.familyName?.lowercased(),
+            components1.givenName?.lowercased(), components1.familyName?.lowercased()
+        ) {
+        case let (
+            _, familyName0?,
+            _, familyName1?
+        ):
+            return familyName0.isLessThan(familyName1, whenEqual: fallback)
+        case (
+            _, let familyName0?,
+            let givenName1?, nil
+        ):
+            return familyName0.isLessThan(givenName1, whenEqual: fallback)
+        case (
+            let givenName0?, nil,
+            _, let familyName1?
+        ):
+            return givenName0.isLessThan(familyName1, whenEqual: fallback)
+        default:
+            return fallback
+        }
+    }
+}
+
 // MARK: - private
+
+private extension Optional {
+    /// Exchange two optionals for a single optional tuple.
+    /// - Returns: `nil` if either tuple element is `nil`.
+    init<Wrapped0, Wrapped1>(optionals: (Wrapped0?, Wrapped1?))
+        where Wrapped == (Wrapped0, Wrapped1)
+    {
+        switch optionals {
+        case let (wrapped0?, wrapped1?):
+            self = (wrapped0, wrapped1)
+        default:
+            self = nil
+        }
+    }
+}
+
+private extension Comparable {
+    /// Like `<`, but with a default for the case when `==` evaluates to `true`.
+    func isLessThan(
+        _ comparable: Self,
+        whenEqual default: @autoclosure () -> Bool
+    ) -> Bool {
+        self == comparable
+            ? `default`()
+            : self < comparable
+    }
+}
 
 private extension Library {
     func storeCancellable(for book: Book) {
@@ -122,5 +201,34 @@ private extension Dictionary {
     /// - Postcondition: The collection of transformed keys must not contain duplicates.
     func mapKeys<Transformed>(_ transform: (Key) throws -> Transformed) rethrows -> [Transformed: Value] {
         .init(uniqueKeysWithValues: try map { (try transform($0.key), $0.value) })
+    }
+}
+
+private extension Sequence {
+    /// Sorted by a common `Comparable` value.
+    func sorted<Comparable: Swift.Comparable>(
+        _ comparable: (Element) throws -> Comparable
+    ) rethrows -> [Element] {
+        try sorted(comparable, <)
+    }
+
+    /// Sorted by a common `Comparable` value, and sorting closure.
+    func sorted<Comparable: Swift.Comparable>(
+        _ comparable: (Element) throws -> Comparable,
+        _ areInIncreasingOrder: (Comparable, Comparable) throws -> Bool
+    ) rethrows -> [Element] {
+        try sorted {
+            try areInIncreasingOrder(comparable($0), comparable($1))
+        }
+    }
+}
+
+private extension String {
+    /// - Returns: nil if not prefixed with `prefix`
+    func without(prefix: String) -> Self? {
+        guard hasPrefix(prefix)
+        else { return nil }
+
+        return .init(dropFirst(prefix.count))
     }
 }

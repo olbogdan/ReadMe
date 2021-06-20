@@ -29,8 +29,14 @@ struct ContentView: View {
                 .buttonStyle(BorderlessButtonStyle())
                 .padding(.vertical, 8)
                 .sheet(isPresented: $addingNewBook, content: NewBookView.init)
-                ForEach(Section.allCases, id: \.self) {
-                    SectionView(section: $0)
+
+                switch library.sortStyle {
+                    case .title, .author:
+                        BookRows(books: library.sortedBooks)
+                    case .manual:
+                        ForEach(Section.allCases, id: \.self) {
+                            SectionView(section: $0)
+                        }
                 }
             }
             .toolbar {
@@ -74,6 +80,18 @@ private struct BookRow: View {
                     .buttonStyle(BorderlessButtonStyle())
             }
             .padding(.vertical, 8)
+        }
+    }
+}
+
+private struct BookRows: View {
+    let books: [Book]
+    @EnvironmentObject var library: Library
+
+    var body: some View {
+            ForEach(books) {
+                BookRow(book: $0)
+            }
         }
     }
 }
