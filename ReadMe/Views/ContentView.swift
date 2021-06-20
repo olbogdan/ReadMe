@@ -37,7 +37,7 @@ struct ContentView: View {
     }
 }
 
-struct BookRow: View {
+private struct BookRow: View {
     @ObservedObject var book: Book
     @EnvironmentObject var library: Library
 
@@ -61,6 +61,21 @@ struct BookRow: View {
                         .buttonStyle(BorderlessButtonStyle())
                 }
                 .padding(.vertical, 8)
+        }
+    }
+}
+
+private struct SectionView: View {
+    let section: Section
+    @EnvironmentObject var library: Library
+
+    var body: some View {
+        if let books = library.manuallySortedBooks[section] {
+            SwiftUI.Section(header: Image("BookTexture")) {
+                ForEach(books) {
+                    BookRow(book: $0)
+                }
+            }
         }
     }
 }
