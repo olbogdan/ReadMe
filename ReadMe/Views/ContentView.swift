@@ -89,8 +89,14 @@ private struct BookRows: View {
     @EnvironmentObject var library: Library
 
     var body: some View {
+        /// Should be shown list of books without sections.
+        /// A Section with EmptyView added to prevent a crash `"Invalid update: invalid number of sections"` that happens when user switch from a SortedBooks SectionView to this ManuallySorted list of books.
+        SwiftUI.Section(header: EmptyView()) {
             ForEach(books) {
                 BookRow(book: $0)
+            }
+            .onDelete { indexSet in
+                library.deleteBooks(atOffsets: indexSet, section: nil)
             }
         }
     }
