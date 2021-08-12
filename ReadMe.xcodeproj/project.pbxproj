@@ -18,7 +18,18 @@
 		68ADFE1B267A4AF800A091A5 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68ADFE1A267A4AF800A091A5 /* Library.swift */; };
 		68ADFE1D267A4E5B00A091A5 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68ADFE1C267A4E5B00A091A5 /* DetailView.swift */; };
 		68ADFE21267BC0DE00A091A5 /* PHPickerViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68ADFE20267BC0DE00A091A5 /* PHPickerViewControllerView.swift */; };
+		68BBE13126C567AB00AE3214 /* ReadMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BBE13026C567AB00AE3214 /* ReadMeTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		68BBE13326C567AB00AE3214 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 68ADFDFB267A364F00A091A5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 68ADFE02267A364F00A091A5;
+			remoteInfo = ReadMe;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		689383C4267E6692002B75C9 /* NewBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBookView.swift; sourceTree = "<group>"; };
@@ -34,10 +45,20 @@
 		68ADFE1A267A4AF800A091A5 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		68ADFE1C267A4E5B00A091A5 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		68ADFE20267BC0DE00A091A5 /* PHPickerViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPickerViewControllerView.swift; sourceTree = "<group>"; };
+		68BBE12E26C567AA00AE3214 /* ReadMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReadMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		68BBE13026C567AB00AE3214 /* ReadMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadMeTests.swift; sourceTree = "<group>"; };
+		68BBE13226C567AB00AE3214 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		68ADFE00267A364F00A091A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68BBE12B26C567AA00AE3214 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -51,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				68ADFE05267A364F00A091A5 /* ReadMe */,
+				68BBE12F26C567AB00AE3214 /* ReadMeTests */,
 				68ADFE04267A364F00A091A5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				68ADFE03267A364F00A091A5 /* ReadMe.app */,
+				68BBE12E26C567AA00AE3214 /* ReadMeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,6 +121,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		68BBE12F26C567AB00AE3214 /* ReadMeTests */ = {
+			isa = PBXGroup;
+			children = (
+				68BBE13026C567AB00AE3214 /* ReadMeTests.swift */,
+				68BBE13226C567AB00AE3214 /* Info.plist */,
+			);
+			path = ReadMeTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -118,6 +150,24 @@
 			productReference = 68ADFE03267A364F00A091A5 /* ReadMe.app */;
 			productType = "com.apple.product-type.application";
 		};
+		68BBE12D26C567AA00AE3214 /* ReadMeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68BBE13726C567AB00AE3214 /* Build configuration list for PBXNativeTarget "ReadMeTests" */;
+			buildPhases = (
+				68BBE12A26C567AA00AE3214 /* Sources */,
+				68BBE12B26C567AA00AE3214 /* Frameworks */,
+				68BBE12C26C567AA00AE3214 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				68BBE13426C567AB00AE3214 /* PBXTargetDependency */,
+			);
+			name = ReadMeTests;
+			productName = ReadMeTests;
+			productReference = 68BBE12E26C567AA00AE3214 /* ReadMeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -129,6 +179,10 @@
 				TargetAttributes = {
 					68ADFE02267A364F00A091A5 = {
 						CreatedOnToolsVersion = 12.5;
+					};
+					68BBE12D26C567AA00AE3214 = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 68ADFE02267A364F00A091A5;
 					};
 				};
 			};
@@ -146,6 +200,7 @@
 			projectRoot = "";
 			targets = (
 				68ADFE02267A364F00A091A5 /* ReadMe */,
+				68BBE12D26C567AA00AE3214 /* ReadMeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -157,6 +212,13 @@
 			files = (
 				68ADFE0E267A365300A091A5 /* Preview Assets.xcassets in Resources */,
 				68ADFE0B267A365300A091A5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68BBE12C26C567AA00AE3214 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,7 +241,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		68BBE12A26C567AA00AE3214 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68BBE13126C567AB00AE3214 /* ReadMeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		68BBE13426C567AB00AE3214 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 68ADFE02267A364F00A091A5 /* ReadMe */;
+			targetProxy = 68BBE13326C567AB00AE3214 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		68ADFE10267A365300A091A5 /* Debug */ = {
@@ -342,6 +420,46 @@
 			};
 			name = Release;
 		};
+		68BBE13526C567AB00AE3214 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4U2DW67G88;
+				INFOPLIST_FILE = ReadMeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.grandcentrix.app.JiraInventoryApp.ReadMeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReadMe.app/ReadMe";
+			};
+			name = Debug;
+		};
+		68BBE13626C567AB00AE3214 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4U2DW67G88;
+				INFOPLIST_FILE = ReadMeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.grandcentrix.app.JiraInventoryApp.ReadMeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReadMe.app/ReadMe";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -359,6 +477,15 @@
 			buildConfigurations = (
 				68ADFE13267A365300A091A5 /* Debug */,
 				68ADFE14267A365300A091A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		68BBE13726C567AB00AE3214 /* Build configuration list for PBXNativeTarget "ReadMeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68BBE13526C567AB00AE3214 /* Debug */,
+				68BBE13626C567AB00AE3214 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
