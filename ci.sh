@@ -1,1 +1,2 @@
-
+xcodebuild -project 'ReadMe.xcodeproj' -scheme 'ReadMe' -destination 'platform=iOS Simulator,name=iPhone 8' test
+xcodebuild -project 'ReadMe.xcodeproj' -scheme 'ReadMe' -destination 'generic/platform=iOS' -configuration Release build CODE_SIGNING_ALLOWED=NO
