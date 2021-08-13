@@ -27,7 +27,7 @@ extension Book {
                     .resizable()
                     .scaledToFit()
                     .frame(width: size, height: size)
-                    .font(.title.weight(.light))
+                    .font(Font.title.weight(Font.Weight.light))
                     .foregroundColor(.secondary)
             }
         }
@@ -69,7 +69,7 @@ struct BookmarkButton: View {
 
         Button { book.readMe.toggle() } label: {
             Image(systemName: book.readMe ? "\(bookmark).fill" : bookmark)
-                .font(.system(size: 48, weight: .light))
+                .font(.system(size: 48, weight: Font.Weight.light))
         }
     }
 }
